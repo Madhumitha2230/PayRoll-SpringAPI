@@ -34,6 +34,8 @@ public class SalarySheet {
 	private int noOfDays;
 	@Column(name="leave_days")
 	private int leaveDays;
+	@Column(name="total_salary",nullable=false)
+	private int totalSalary;
 	@Column(name="salary",nullable=false)
 	private int salary;
 	@Column(name="status",nullable=false)

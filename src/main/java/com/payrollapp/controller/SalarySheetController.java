@@ -39,8 +39,8 @@ public class SalarySheetController {
 	}
 	
 	@GetMapping("salary/findbyId/{emp_id}")
-	public SalarySheet findById(@PathVariable("emp_id")Integer id,@RequestBody SalarySheet salarySheet) {
-		Optional<SalarySheet>salarySheetById=salarySheetRepository.findById(id);
+	public SalarySheet findById(@PathVariable("emp_id")Integer emp_id,@RequestBody SalarySheet salarySheet) {
+		Optional<SalarySheet>salarySheetById=salarySheetRepository.findById(emp_id);
 		if(salarySheetById.isPresent()) {
 			return salarySheetById.get();
 		}
