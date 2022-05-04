@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.payrollapp.model.SalarySheet;
 import com.payrollapp.repository.SalarySheetRepository;
+import com.payrollapp.validate.SalarySheetValidation;
 
 @RestController
 public class SalarySheetController {
@@ -21,9 +24,15 @@ public class SalarySheetController {
 	SalarySheetRepository salarySheetRepository;
 	
 	@PostMapping("salary/save")
-	public SalarySheet save(@RequestBody SalarySheet salarySheet) {
-		salarySheetRepository.save(salarySheet);
-		return salarySheet;
+	public ResponseEntity<String>save(@RequestBody SalarySheet salarySheet) {
+		try {
+			SalarySheetValidation.validate(salarySheet);
+			salarySheetRepository.save(salarySheet);
+			return new ResponseEntity<String>("succesfully salary sheet updated",HttpStatus.OK);
+		}
+		catch(Exception e) {
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping("salary/list")// list all employees"

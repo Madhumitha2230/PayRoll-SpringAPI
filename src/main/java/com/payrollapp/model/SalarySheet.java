@@ -27,17 +27,17 @@ public class SalarySheet {
 	@Column(name="emp_id")
 	private Integer empId;
 	@Column(name="month", nullable=false)
-	private int month;
+	private Integer month;
 	@Column(name="year")
-	private int year;
+	private Integer year;
 	@Column(name="no_of_days",nullable=false)
-	private int noOfDays;
+	private Integer noOfDays;
 	@Column(name="leave_days")
-	private int leaveDays;
+	private Integer leaveDays;
 	@Column(name="total_salary",nullable=false)
-	private int totalSalary;
+	private Integer totalSalary;
 	@Column(name="salary",nullable=false)
-	private int salary;
+	private Integer salary;
 	@Column(name="status",nullable=false)
 	private String status;
 	
